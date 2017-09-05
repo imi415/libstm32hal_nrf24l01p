@@ -62,14 +62,25 @@
 #define NRF_OPR_READ_REG(reg)   (reg) // Read operation, no mask
 #define NRF_OPR_WRITE_REG(reg)  (0x20 | reg) // Write operation, mask 0x20
 
+// Mode
+typedef enum
+{
+  NRF_MODE_TX = 0x00,
+  NRF_MODE_RX = 0x01
+} NRF_Mode;
+
 // Struct typedefs
 
 typedef struct
 {
+  SPI_HandleTypeDef handle;
+
+  uint8_t Mode;
   uint8_t AddressWidth;
   uint8_t Address[5]; // WARNING: LSByte FIRST!
   uint8_t EnabledPipelines;
   uint8_t AutoAcknowledge;
+
 } NRF_InitTypeDef;
 
 #endif
