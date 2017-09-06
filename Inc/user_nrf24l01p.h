@@ -73,8 +73,6 @@ typedef enum
 
 typedef struct
 {
-  SPI_HandleTypeDef handle;
-
   uint8_t Mode;
   uint8_t AddressWidth;
   uint8_t Address[5]; // WARNING: LSByte FIRST!
@@ -82,5 +80,25 @@ typedef struct
   uint8_t AutoAcknowledge;
 
 } NRF_InitTypeDef;
+
+typedef enum
+{
+  NRF_EVENT_SPITXCPLT,
+  NRF_EVENT_SPIRXCPLT,
+  NRF_EVENT_IRQTRIG,
+  NRF_EVENT_IDLE
+} NRF_EVENT;
+
+typedef struct
+{
+  SPI_HandleTypeDef * Interface;
+  NRF_InitTypeDef Init;
+  NRF_EVENT Event;
+
+  // Buffers
+
+  // Flags
+
+} NRF_HandleTypeDef;
 
 #endif
